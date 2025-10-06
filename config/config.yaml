@@ -1,0 +1,66 @@
+# Hate Speech Detection Configuration
+
+# Data Configuration
+data:
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed"
+  external_data_path: "data/external"
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  random_seed: 42
+  max_length: 512
+  min_length: 5
+
+# Model Configuration
+model:
+  name: "bert-base-uncased"
+  num_labels: 2
+  dropout_rate: 0.1
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  warmup_steps: 500
+  max_epochs: 10
+  batch_size: 16
+  gradient_accumulation_steps: 1
+  early_stopping_patience: 3
+
+# Training Configuration
+training:
+  device: "auto"  # auto, cpu, cuda
+  mixed_precision: true
+  save_best_model: true
+  save_last_model: true
+  log_interval: 100
+  eval_interval: 500
+  save_interval: 1000
+
+# Evaluation Configuration
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1", "auc"]
+  save_predictions: true
+  save_confusion_matrix: true
+  save_classification_report: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {name}:{function}:{line} - {message}"
+  file_path: "logs/training.log"
+  max_file_size: "10 MB"
+  backup_count: 5
+
+# Weights & Biases Configuration
+wandb:
+  project: "hate-speech-detection"
+  entity: null  # Set your W&B entity/username
+  tags: ["hate-speech", "nlp", "classification"]
+  notes: "MSc Thesis Project"
+
+# Paths
+paths:
+  models_dir: "models"
+  logs_dir: "logs"
+  results_dir: "results"
+  checkpoints_dir: "checkpoints"
+  tensorboard_dir: "tensorboard_logs"
