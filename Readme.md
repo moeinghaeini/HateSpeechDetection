@@ -3,11 +3,10 @@
 ## 📋 Project Overview
 
 **Project Name:** Mappa dell'Intolleranza 2024 (Intolerance Map 2024)  
-**Architecture:** Production-Ready AWS Cloud Infrastructure  
-**Scale:** 194,499+ records across 6 hate speech categories  
+**Architecture:** Production-Ready AWS Cloud Infrastructure   
 **Approach:** End-to-End Data Engineering Pipeline  
 
-This project represents a sophisticated, large-scale academic research initiative that combines multiple AI models with human expertise to create a detailed map of intolerance in Italian social media. The platform processes hate speech across 6 categories: Antisemitism, Misogyny, Islamophobia, Xenophobia, LGBTQ+ Phobia, and Disability Discrimination.
+
 
 ---
 
