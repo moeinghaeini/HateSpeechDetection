@@ -3,7 +3,6 @@
 
 **Project:** Mappa dell'Intolleranza 2024  
 **Architecture:** Production-ready AWS cloud infrastructure  
-**Scale:** 194,499+ records, 6 hate speech categories, Multi-source ingestion
 
 ---
 
