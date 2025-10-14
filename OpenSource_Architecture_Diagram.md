@@ -3,10 +3,7 @@
 
 **Project:** Mappa dell'Intolleranza 2024  
 **Architecture:** Open-Source Data Engineering Stack  
-**Scale:** 194,499+ records, 6 hate speech categories  
 **Approach:** End-to-End Open-Source Data Pipeline  
-
-This architecture demonstrates how to build a production-ready hate speech detection platform using entirely open-source tools, making it accessible, cost-effective, and customizable for research and development.
 
 ---
 
@@ -516,36 +513,3 @@ flowchart LR
 
 ---
 
-## 🚀 Implementation Benefits
-
-### **1. Cost Efficiency**
-- **Zero Licensing Costs**: All tools are open-source and free
-- **Cloud Flexibility**: Deploy on any cloud provider or on-premises
-- **Resource Optimization**: Use only what you need, scale as required
-- **Community Support**: Large communities for troubleshooting
-
-### **2. Customization & Control**
-- **Full Source Access**: Modify and extend any component
-- **No Vendor Lock-in**: Switch between providers easily
-- **Custom Integrations**: Build specific features for your needs
-- **Technology Choice**: Select best tools for each use case
-
-### **3. Scalability & Performance**
-- **Horizontal Scaling**: Scale components independently
-- **High Performance**: Optimized for big data processing
-- **Fault Tolerance**: Built-in redundancy and recovery
-- **Load Distribution**: Efficient resource utilization
-
-### **4. Security & Compliance**
-- **Transparent Security**: Open-source security model
-- **Custom Security**: Implement your own security measures
-- **Compliance Ready**: Meet various regulatory requirements
-- **Audit Trails**: Complete logging and monitoring
-
-### **5. Development & Maintenance**
-- **Active Communities**: Continuous development and updates
-- **Rich Documentation**: Extensive guides and tutorials
-- **Plugin Ecosystem**: Extend functionality with plugins
-- **Professional Support**: Commercial support available
-
----
