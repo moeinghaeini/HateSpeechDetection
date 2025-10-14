@@ -1,67 +1,170 @@
-# VISUAL ARCHITECTURE DIAGRAM
-## Hate Speech Detection Platform - Complete System Architecture
+# AWS ARCHITECTURE VISUALIZATION
+## Hate Speech Detection Platform - Production-Ready Cloud Infrastructure
 
 **Project:** Mappa dell'Intolleranza 2024  
-**Type:** Production-ready AWS Cloud Architecture  
-**Scale:** 194,499+ records, 6 hate speech categories
+**Architecture:** AWS Cloud-Native Solution  
+**Scale:** 194,499+ records, 6 hate speech categories, Multi-source ingestion
 
 ---
 
-## COMPLETE SYSTEM ARCHITECTURE
+## COMPLETE AWS ARCHITECTURE DIAGRAM
 
 ```mermaid
 graph TB
-    subgraph "🌐 Data Sources"
-        A[📱 Twitter API v2]
-        B[📘 Facebook Graph API]
-        C[📷 Instagram API]
-        D[📹 TikTok API]
-        E[📁 Manual Uploads]
+    subgraph "🌐 External Data Sources"
+        A["`**Twitter API v2**
+        📱 Real-time social media data
+        Rate: 10,000 tweets/hour`"]
+        B["`**Facebook Graph API**
+        📘 Facebook posts & comments
+        Rate: 5,000 posts/hour`"]
+        C["`**Instagram API**
+        📷 Instagram content analysis
+        Rate: 2,000 posts/hour`"]
+        D["`**TikTok API**
+        📹 Video content processing
+        Rate: 1,000 videos/hour`"]
+        E["`**Manual Uploads**
+        📁 File-based data ingestion
+        CSV, Excel, JSON formats`"]
     end
     
     subgraph "☁️ AWS Cloud Infrastructure"
         subgraph "📥 Data Ingestion Layer"
-            F[🌊 Amazon Kinesis<br/>Data Streams<br/>Real-time streaming<br/>10 shards]
-            G[📬 Amazon SQS<br/>Message Queuing<br/>Standard + DLQ]
-            H[⚡ Amazon EventBridge<br/>Event Routing<br/>Custom buses]
+            F["`**Amazon Kinesis Data Streams**
+            🌊 Real-time data streaming
+            • 10 shards for high throughput
+            • 24-hour retention period
+            • Auto-scaling based on volume`"]
+            G["`**Amazon SQS**
+            📬 Message queuing service
+            • Standard queues for high throughput
+            • Dead letter queues for error handling
+            • 300-second visibility timeout`"]
+            H["`**Amazon EventBridge**
+            ⚡ Event-driven architecture
+            • Custom event buses
+            • Event routing and filtering
+            • Integration with external APIs`"]
         end
         
-        subgraph "⚙️ Processing Layer"
-            I[⚡ AWS Lambda<br/>Data Validation<br/>Python 3.11]
-            J[⚡ AWS Lambda<br/>Real-time Classification<br/>15min timeout]
-            K[🐳 Amazon ECS<br/>with Fargate<br/>Container processing]
-            L[📊 Amazon EMR<br/>Spark Cluster<br/>Big data processing]
+        subgraph "⚙️ Data Processing Layer"
+            I["`**AWS Lambda**
+            ⚡ Serverless data validation
+            • Python 3.11 runtime
+            • 3GB memory, 15min timeout
+            • VPC configuration`"]
+            J["`**AWS Lambda**
+            ⚡ Real-time classification
+            • Multi-model ensemble processing
+            • GPT-4o, Gemini, BERT integration
+            • Confidence scoring`"]
+            K["`**Amazon ECS with Fargate**
+            🐳 Containerized processing
+            • Auto-scaling containers
+            • Load balancer integration
+            • Service discovery`"]
+            L["`**Amazon EMR**
+            📊 Big data processing
+            • Spark cluster for analytics
+            • Spot instances for cost optimization
+            • Auto-termination after completion`"]
         end
         
-        subgraph "🤖 AI/ML Layer"
-            M[🧠 Amazon SageMaker<br/>Model Training<br/>GPT-4o, Gemini, BERT]
-            N[🔮 Amazon Bedrock<br/>Foundation Models<br/>Claude, Titan]
-            O[📝 Amazon Comprehend<br/>NLP Services<br/>Sentiment, Entities]
+        subgraph "🤖 AI/ML Services Layer"
+            M["`**Amazon SageMaker**
+            🧠 Machine learning platform
+            • Model training and deployment
+            • Real-time inference endpoints
+            • Batch transform jobs`"]
+            N["`**Amazon Bedrock**
+            🔮 Foundation models access
+            • Claude 3 (Anthropic)
+            • Titan (Amazon)
+            • Jurassic-2 (AI21 Labs)`"]
+            O["`**Amazon Comprehend**
+            📝 Natural language processing
+            • Sentiment analysis
+            • Entity recognition
+            • Custom classification models`"]
         end
         
-        subgraph "💾 Storage Layer"
-            P[🗄️ Amazon S3<br/>Data Lake<br/>Raw + Processed data]
-            Q[🗃️ Amazon RDS<br/>PostgreSQL<br/>Structured data]
-            R[⚡ Amazon DynamoDB<br/>NoSQL<br/>Real-time data]
-            S[🔍 Amazon OpenSearch<br/>Full-text search<br/>3-node cluster]
+        subgraph "💾 Data Storage Layer"
+            P["`**Amazon S3 Data Lake**
+            🗄️ Primary data storage
+            • Raw data: Standard storage
+            • Processed data: IA storage
+            • Archived data: Glacier
+            • Versioning and replication`"]
+            Q["`**Amazon RDS PostgreSQL**
+            🗃️ Relational data warehouse
+            • Multi-AZ deployment
+            • Read replicas for analytics
+            • Automated backups (30-day)`"]
+            R["`**Amazon DynamoDB**
+            ⚡ NoSQL real-time storage
+            • On-demand billing mode
+            • Global secondary indexes
+            • Point-in-time recovery`"]
+            S["`**Amazon OpenSearch**
+            🔍 Full-text search engine
+            • 3-node cluster (t3.small)
+            • Multi-AZ deployment
+            • Automated snapshots`"]
         end
         
-        subgraph "📊 Analytics Layer"
-            T[📈 Amazon QuickSight<br/>Interactive Dashboards<br/>Real-time visualization]
-            U[🔍 Amazon Athena<br/>Serverless SQL<br/>S3 queries]
-            V[🔧 AWS Glue<br/>ETL Operations<br/>Data transformation]
+        subgraph "📊 Analytics & BI Layer"
+            T["`**Amazon QuickSight**
+            📈 Business intelligence
+            • Interactive dashboards
+            • Real-time data visualization
+            • Custom reports and alerts`"]
+            U["`**Amazon Athena**
+            🔍 Serverless SQL queries
+            • S3 data lake queries
+            • Partitioned tables
+            • Cost optimization`"]
+            V["`**AWS Glue**
+            🔧 ETL operations
+            • Data crawlers
+            • ETL jobs and workflows
+            • Data catalog management`"]
         end
         
-        subgraph "🌐 Presentation Layer"
-            W[🌐 Amazon API Gateway<br/>RESTful APIs<br/>Rate limiting]
-            X[🌍 Amazon CloudFront<br/>CDN Distribution<br/>Global edge]
-            Y[💻 S3 Static Website<br/>React.js Frontend<br/>SPA hosting]
+        subgraph "🌐 API & Presentation Layer"
+            W["`**Amazon API Gateway**
+            🌐 API management
+            • RESTful APIs
+            • Rate limiting and throttling
+            • API key management`"]
+            X["`**Amazon CloudFront**
+            🌍 Content delivery network
+            • Global edge locations
+            • SSL/TLS termination
+            • Caching strategies`"]
+            Y["`**S3 Static Website**
+            💻 Frontend application
+            • React.js SPA
+            • HTTPS enforcement
+            • Custom error pages`"]
         end
         
-        subgraph "🔒 Security & Monitoring"
-            Z[🔐 AWS IAM<br/>Identity Management<br/>Roles & Policies]
-            AA[📊 Amazon CloudWatch<br/>Monitoring & Logging<br/>Metrics & Alarms]
-            BB[📋 AWS CloudTrail<br/>API Audit Logs<br/>Compliance]
+        subgraph "🔒 Security & Monitoring Layer"
+            Z["`**AWS IAM**
+            🔐 Identity and access management
+            • Least privilege access
+            • Service-specific roles
+            • MFA enforcement`"]
+            AA["`**Amazon CloudWatch**
+            📊 Monitoring and logging
+            • Application metrics
+            • Infrastructure monitoring
+            • Custom dashboards`"]
+            BB["`**AWS CloudTrail**
+            📋 API audit logging
+            • All API calls logged
+            • User activity tracking
+            • Compliance auditing`"]
         end
     end
     
@@ -102,7 +205,7 @@ graph TB
     W --> X
     X --> Y
     
-    %% Security connections
+    %% Security connections (dotted lines)
     Z -.-> I
     Z -.-> K
     Z -.-> M
@@ -121,83 +224,186 @@ graph TB
 
 ---
 
-## DATA PIPELINE FLOW
+## DATA PIPELINE FLOW DIAGRAM
 
 ```mermaid
 flowchart LR
-    subgraph "📥 Data Ingestion"
-        A1[Social Media APIs] --> B1[Kinesis Streams]
-        A2[File Uploads] --> B2[SQS Queues]
-        A3[Manual Data] --> B3[EventBridge]
+    subgraph "📥 Data Ingestion Layer"
+        A1["`**Social Media APIs**
+        📱 Twitter, Facebook, Instagram
+        Rate: 18,000 posts/hour`"] --> B1["`**Kinesis Data Streams**
+        🌊 Real-time streaming
+        10 shards, 24h retention`"]
+        A2["`**File Uploads**
+        📁 CSV, Excel, JSON
+        Manual data entry`"] --> B2["`**SQS Queues**
+        📬 Message queuing
+        Standard + DLQ`"]
+        A3["`**Manual Data**
+        ✍️ Human annotations
+        Quality validation`"] --> B3["`**EventBridge**
+        ⚡ Event routing
+        Custom event buses`"]
     end
     
-    subgraph "🔄 Data Processing"
-        B1 --> C1[Lambda: Validation]
+    subgraph "🔄 Data Processing Layer"
+        B1 --> C1["`**Lambda: Validation**
+        ⚡ Data quality checks
+        Python 3.11, 3GB RAM`"]
         B2 --> C1
         B3 --> C1
-        C1 --> C2[Lambda: Classification]
-        C1 --> C3[ECS: Batch Processing]
-        C2 --> C4[SageMaker: AI Models]
-        C3 --> C5[EMR: Analytics]
+        C1 --> C2["`**Lambda: Classification**
+        ⚡ Real-time AI processing
+        GPT-4o, Gemini, BERT`"]
+        C1 --> C3["`**ECS: Batch Processing**
+        🐳 Containerized workflows
+        Auto-scaling containers`"]
+        C2 --> C4["`**SageMaker: AI Models**
+        🧠 ML inference
+        Real-time endpoints`"]
+        C3 --> C5["`**EMR: Analytics**
+        📊 Spark processing
+        Big data analytics`"]
     end
     
-    subgraph "💾 Data Storage"
-        C4 --> D1[S3 Data Lake]
+    subgraph "💾 Data Storage Layer"
+        C4 --> D1["`**S3 Data Lake**
+        🗄️ Primary storage
+        Raw + processed data`"]
         C5 --> D1
-        C2 --> D2[RDS: Metadata]
-        C3 --> D3[DynamoDB: Real-time]
-        C5 --> D4[OpenSearch: Search]
+        C2 --> D2["`**RDS: Metadata**
+        🗃️ PostgreSQL
+        Structured data`"]
+        C3 --> D3["`**DynamoDB: Real-time**
+        ⚡ NoSQL storage
+        High-performance queries`"]
+        C5 --> D4["`**OpenSearch: Search**
+        🔍 Full-text search
+        3-node cluster`"]
     end
     
-    subgraph "📊 Data Analytics"
-        D1 --> E1[Athena: SQL Queries]
-        D2 --> E2[QuickSight: Dashboards]
+    subgraph "📊 Data Analytics Layer"
+        D1 --> E1["`**Athena: SQL Queries**
+        🔍 Serverless SQL
+        S3 data lake queries`"]
+        D2 --> E2["`**QuickSight: Dashboards**
+        📈 BI visualization
+        Real-time analytics`"]
         D3 --> E2
         D4 --> E2
-        E1 --> E3[Glue: ETL Jobs]
+        E1 --> E3["`**Glue: ETL Jobs**
+        🔧 Data transformation
+        Workflow orchestration`"]
     end
     
-    subgraph "🌐 Data Presentation"
-        E2 --> F1[API Gateway]
+    subgraph "🌐 Data Presentation Layer"
+        E2 --> F1["`**API Gateway**
+        🌐 RESTful APIs
+        Rate limiting & auth`"]
         E3 --> F1
-        F1 --> F2[CloudFront CDN]
-        F2 --> F3[React Frontend]
+        F1 --> F2["`**CloudFront CDN**
+        🌍 Global distribution
+        Edge caching`"]
+        F2 --> F3["`**React Frontend**
+        💻 SPA application
+        Interactive dashboards`"]
     end
 ```
 
 ---
 
-## SECURITY ARCHITECTURE
+## SECURITY ARCHITECTURE DIAGRAM
 
 ```mermaid
 graph TB
-    subgraph "🔐 Identity & Access"
-        A1[AWS IAM<br/>User & Role Management]
-        A2[Multi-Factor Auth<br/>MFA Enforcement]
-        A3[Role-Based Access<br/>Least Privilege]
+    subgraph "🔐 Identity & Access Management"
+        A1["`**AWS IAM**
+        🔐 Identity and access management
+        • User and role management
+        • Service-specific roles
+        • Cross-account access`"]
+        A2["`**Multi-Factor Authentication**
+        📱 MFA enforcement
+        • Hardware tokens
+        • SMS verification
+        • Authenticator apps`"]
+        A3["`**Role-Based Access Control**
+        👥 Least privilege access
+        • Admin users
+        • Data scientists
+        • Read-only users`"]
     end
     
-    subgraph "🛡️ Network Security"
-        B1[Amazon VPC<br/>Private Network]
-        B2[Security Groups<br/>Firewall Rules]
-        B3[Network ACLs<br/>Subnet Protection]
-        B4[AWS WAF<br/>Web Application Firewall]
+    subgraph "🛡️ Network Security Layer"
+        B1["`**Amazon VPC**
+        🌐 Private network isolation
+        • Private subnets for databases
+        • Public subnets for load balancers
+        • NAT gateways for outbound access`"]
+        B2["`**Security Groups**
+        🔥 Stateful firewall rules
+        • Inbound/outbound rules
+        • Port and protocol restrictions
+        • Source/destination filtering`"]
+        B3["`**Network ACLs**
+        🚧 Subnet-level protection
+        • Stateless firewall rules
+        • Additional security layer
+        • Custom network policies`"]
+        B4["`**AWS WAF**
+        🛡️ Web application firewall
+        • DDoS protection
+        • SQL injection prevention
+        • Rate limiting`"]
     end
     
-    subgraph "🔒 Data Security"
-        C1[AWS KMS<br/>Key Management]
-        C2[Server-Side Encryption<br/>Data at Rest]
-        C3[Transport Security<br/>Data in Transit]
-        C4[Data Loss Prevention<br/>PII Protection]
+    subgraph "🔒 Data Security & Encryption"
+        C1["`**AWS KMS**
+        🔑 Key management service
+        • Customer-managed keys
+        • Key rotation policies
+        • Hardware security modules`"]
+        C2["`**Server-Side Encryption**
+        🔐 Data at rest protection
+        • S3 SSE-S3 encryption
+        • RDS encryption at rest
+        • DynamoDB encryption`"]
+        C3["`**Transport Layer Security**
+        🔒 Data in transit protection
+        • TLS 1.2+ encryption
+        • Certificate management
+        • End-to-end encryption`"]
+        C4["`**Data Loss Prevention**
+        🚫 PII protection
+        • Data classification
+        • Access controls
+        • Audit logging`"]
     end
     
     subgraph "📊 Monitoring & Compliance"
-        D1[CloudTrail<br/>API Audit Logs]
-        D2[CloudWatch<br/>Security Monitoring]
-        D3[GuardDuty<br/>Threat Detection]
-        D4[AWS Config<br/>Compliance Monitoring]
+        D1["`**AWS CloudTrail**
+        📋 API audit logging
+        • All API calls logged
+        • User activity tracking
+        • Compliance auditing`"]
+        D2["`**Amazon CloudWatch**
+        📊 Security monitoring
+        • Application metrics
+        • Infrastructure monitoring
+        • Custom security dashboards`"]
+        D3["`**Amazon GuardDuty**
+        🕵️ Threat detection
+        • Malware detection
+        • Anomaly detection
+        • Threat intelligence`"]
+        D4["`**AWS Config**
+        ⚙️ Compliance monitoring
+        • Resource configuration
+        • Compliance rules
+        • Change tracking`"]
     end
     
+    %% Security flow connections
     A1 --> B1
     A2 --> A1
     A3 --> A1
@@ -213,6 +419,12 @@ graph TB
     D1 --> D2
     D2 --> D3
     D3 --> D4
+    
+    %% Cross-layer security connections
+    A1 -.-> C1
+    B1 -.-> C2
+    C1 -.-> D1
+    D1 -.-> A1
 ```
 
 ---
@@ -260,6 +472,131 @@ gantt
     Cost Optimization          :cost, after perf, 2w
     Disaster Recovery          :dr, after cost, 2w
     Production Deployment      :prod, after dr, 2w
+```
+
+---
+
+## PERFORMANCE MONITORING ARCHITECTURE
+
+```mermaid
+graph TB
+    subgraph "📊 Application Performance Monitoring"
+        A1["`**AWS X-Ray**
+        🔍 Distributed tracing
+        • Request flow tracking
+        • Performance bottlenecks
+        • Error analysis`"]
+        A2["`**CloudWatch Logs**
+        📝 Centralized logging
+        • Application logs
+        • Error logs
+        • Access logs`"]
+        A3["`**Custom Metrics**
+        📊 Business-specific metrics
+        • Classification accuracy
+        • Processing latency
+        • Data quality scores`"]
+        A4["`**Health Checks**
+        💓 Service health monitoring
+        • Endpoint availability
+        • Response time monitoring
+        • Error rate tracking`"]
+    end
+    
+    subgraph "🖥️ Infrastructure Monitoring"
+        B1["`**CloudWatch Metrics**
+        📈 System performance
+        • CPU utilization
+        • Memory usage
+        • Network throughput`"]
+        B2["`**Application Insights**
+        🔬 Code-level monitoring
+        • Function performance
+        • Database queries
+        • API response times`"]
+        B3["`**Synthetic Monitoring**
+        🤖 User experience testing
+        • Automated testing
+        • Performance baselines
+        • SLA monitoring`"]
+        B4["`**Real User Monitoring**
+        👥 Actual user performance
+        • Browser performance
+        • Mobile app metrics
+        • User journey tracking`"]
+    end
+    
+    subgraph "🚨 Alerting & Notifications"
+        C1["`**SNS Topics**
+        📢 Alert distribution
+        • Email notifications
+        • SMS alerts
+        • Push notifications`"]
+        C2["`**Email Notifications**
+        📧 Critical alerts
+        • System outages
+        • Performance degradation
+        • Security incidents`"]
+        C3["`**Slack Integration**
+        💬 Team notifications
+        • Real-time alerts
+        • Team collaboration
+        • Status updates`"]
+        C4["`**PagerDuty**
+        📞 On-call management
+        • Incident escalation
+        • On-call rotation
+        • Response tracking`"]
+    end
+    
+    subgraph "📈 Dashboards & Reporting"
+        D1["`**CloudWatch Dashboards**
+        📊 Real-time views
+        • System overview
+        • Performance metrics
+        • Custom widgets`"]
+        D2["`**Performance Reports**
+        📋 Regular reports
+        • Daily summaries
+        • Weekly trends
+        • Monthly analysis`"]
+        D3["`**Trend Analysis**
+        📈 Historical data
+        • Performance trends
+        • Capacity planning
+        • Growth patterns`"]
+        D4["`**Capacity Planning**
+        📏 Resource forecasting
+        • Usage predictions
+        • Scaling recommendations
+        • Cost projections`"]
+    end
+    
+    %% Monitoring flow connections
+    A1 --> A2
+    A2 --> A3
+    A3 --> A4
+    
+    B1 --> B2
+    B2 --> B3
+    B3 --> B4
+    
+    A4 --> C1
+    B4 --> C1
+    C1 --> C2
+    C2 --> C3
+    C3 --> C4
+    
+    B1 --> D1
+    D1 --> D2
+    D2 --> D3
+    D3 --> D4
+    
+    %% Cross-monitoring connections
+    A1 -.-> B1
+    B1 -.-> C1
+    C1 -.-> D1
+    D1 -.-> A1
 ```
 
 ---
